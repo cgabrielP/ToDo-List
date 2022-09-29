@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import DefaultMessage from "./component/DefaultMessage";
 import Form from "./component/Form";
 import TodoList from "./component/TodoList";
 
@@ -6,7 +7,7 @@ import TodoList from "./component/TodoList";
 const Home = () => {
   const [inputText, setInputText] = useState("");
   const [todos, setTodos] = useState([]);
-  const[status, setStatus]=useState('')
+  const [status, setStatus] = useState("");
 
   return (
     <>
@@ -19,12 +20,11 @@ const Home = () => {
           setInputText={setInputText}
           setTodos={setTodos}
           todos={todos}
-          setStatus={setStatus}
+          
         />
-        <TodoList setTodos={setTodos} todos={todos} setStatus={setStatus}/>
-        <header>
-          <div className={status}>No tasks add tasks</div>
-        </header>
+        {todos=='' ? <DefaultMessage status={status} />:<TodoList setTodos={setTodos} todos={todos} setStatus={setStatus} />}
+        
+        
       </div>
     </>
   );
